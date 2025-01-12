@@ -1,0 +1,83 @@
+﻿    <Window x:Class="MathInterpreter.MainWindow"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:oxy="http://oxyplot.org/wpf"
+            Title="Professional Math Interpreter" Height="800" Width="900" Background="#f9f9f9">
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Header -->
+            <Grid Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Math Interpreter" FontSize="24" FontWeight="Bold" 
+                           Foreground="#007acc" VerticalAlignment="Center" Margin="10" />
+                <Button Content="Help" Width="100" Margin="0,0,10,0" Click="Help_Click"
+                        Background="#007acc" Foreground="White" FontSize="16" 
+                        HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="1" />
+            </Grid>
+
+            <!-- Input and Results Section -->
+            <StackPanel Grid.Row="1" Grid.Column="0" Margin="10" VerticalAlignment="Top">
+                <!-- Input Group -->
+                <GroupBox Header="Input" FontSize="16" Foreground="#007acc" Margin="10">
+                    <StackPanel Margin="10">
+                        <TextBox x:Name="ExpressionInput" Height="30" Width="400" Margin="0,10,0,10" Text="x = 2x^2 + 3x - 5" />
+                        <Button Content="Calculate" Width="120" Click="Calculate_Click" />
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Results Group -->
+                <GroupBox Header="Results" FontSize="16" Foreground="#007acc" Margin="10">
+                    <StackPanel Margin="10" VerticalAlignment="Top">
+                        <!-- Result Box -->
+                        <Label Content="Result:" Margin="0,5,0,0" />
+                        <TextBox x:Name="ResultOutput" IsReadOnly="True" Foreground="Black" Background="White"
+                                 Height="30" Margin="0,0,0,10" />
+
+                        <!-- Error Box -->
+                        <Label Content="Errors:" Margin="0,5,0,0" />
+                        <TextBox x:Name="ErrorOutput" IsReadOnly="True" Foreground="Red" Background="#ffe6e6"
+                                 BorderBrush="Red" BorderThickness="2" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
+                                 Height="80" Margin="0,0,0,10" />
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+
+            <!-- Parse Tree  -->
+            <GroupBox Grid.Row="2" Grid.Column="0" Header="Parse Tree" FontSize="16" Foreground="#007acc" Margin="10">
+                <TextBox x:Name="ParseTreeOutput" IsReadOnly="True" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
+                         Background="#edf2f7" Foreground="Black" Padding="5" />
+            </GroupBox>
+
+            <!-- Function Plot -->
+            <GroupBox Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Header="Function Plot" FontSize="16" Foreground="#007acc" Margin="10">
+                <StackPanel Margin="10">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Function Input:" Margin="5,0" />
+                        <TextBox x:Name="FunctionInput" Width="200" Margin="5,0" Text="y = sin(x) + 2x^2" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,10">
+                        <Label Content="xMin:" Margin="5,0" />
+                        <TextBox x:Name="XMinInput" Width="80" Margin="5,0" Text="-5" />
+                        <Label Content="xMax:" Margin="5,0" />
+                        <TextBox x:Name="XMaxInput" Width="80" Margin="5,0" Text="5" />
+                        <Label Content="Δx:" Margin="5,0" />
+                        <TextBox x:Name="StepSizeInput" Width="80" Margin="5,0" Text="0.1" />
+                    </StackPanel>
+                    <Button Content="Plot" Width="100" Click="Plot_Click" Margin="0,10" />
+                    <oxy:PlotView x:Name="FunctionPlot" Height="300" Background="#f7f7f7" Margin="0,10" />
+                </StackPanel>
+            </GroupBox>
+        </Grid>
+    </Window>

@@ -1,0 +1,9 @@
+# Build output directories
+bin/
+obj/
+
+# Visual Studio user-specific files
+*.user
+*.suo
+*.vcxproj.user
+.vs/
